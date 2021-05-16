@@ -15,7 +15,18 @@
 //      RGB(A) image management
 //
 
+
+#ifdef __MORPHOS__
+#include <png.h>
+#undef Allocate
+#undef Remove
+#undef Insert
+#define z_stream_s z_stream_smos
+#define z_stream z_streammos
+#define z_streamp z_streampmos
+#else
 #include <libpng16/png.h>
+#endif
 #include "kexlib.h"
 #include "renderMain.h"
 

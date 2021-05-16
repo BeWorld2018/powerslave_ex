@@ -15,8 +15,14 @@
 #ifndef __DGL_H__
 #define __DGL_H__
 
+#ifdef __MORPHOS__
+#include <SDL.h>
+#include <SDL_opengl.h>
+#else
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
+#endif
+
 #include "kexlib.h"
 
 //#define LOG_GLFUNC_CALLS

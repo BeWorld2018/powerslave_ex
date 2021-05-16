@@ -17,6 +17,7 @@
 
 #include "kexlib.h"
 #include "renderMain.h"
+#ifndef __MORPHOS__
 #include "movie.h"
 
 extern "C"
@@ -1409,3 +1410,7 @@ void kexMoviePlayerFFMpeg::StartVideoStream(const char *filename)
     kexRender::cBackend->ClearBindedTexture();
     kex::cTimer->Sleep(500);
 }
+#else
+
+#endif
+

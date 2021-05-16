@@ -588,6 +588,10 @@ const char *kexSystemSDL::GetBaseDirectory(void)
     
     path.Remove(idx, path.Length());
     return path.c_str();
+#elif __MORPHOS__
+	 static kexStr path = "";
+	
+	  return path.c_str();
 #else
     static const char dummyDirectory[] = {"."};
     // cache multiple requests

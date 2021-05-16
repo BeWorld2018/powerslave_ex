@@ -15,7 +15,12 @@
 //      Main application
 //
 
+#ifdef __MORPHOS__
+#include <SDL.h>
+unsigned long __stack = 1000000;
+#else
 #include <SDL2/SDL.h>
+#endif
 #include "kexlib.h"
 
 kexCvar kex::cvarDeveloper("developer", CVF_BOOL|CVF_CONFIG, "0", "Developer mode");

@@ -61,7 +61,9 @@
 #endif
 #include <time.h>
 #ifndef KEX_WIN32
+#ifndef __MORPHOS__
 #include <unistd.h>
+#endif
 #endif
 #include <new>
 

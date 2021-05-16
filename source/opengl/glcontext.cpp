@@ -15,7 +15,9 @@
 //      OpenGL Loader/Interface
 //
 
+#ifndef __MORPHOS__
 #include <SDL2/SDL.h>
+#endif
 #include "kexlib.h"
 #include "dgl.h"
 

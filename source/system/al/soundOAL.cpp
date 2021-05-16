@@ -831,7 +831,7 @@ int kexSoundOAL::MusicThread(void *data)
 int kexSoundOAL::MovieAudioThread(void *data)
 {
     kexSoundOAL::bShutdownThread = false;
-
+#ifndef __MORPHOS__
     while(1)
     {
         int processed = 0;
@@ -927,6 +927,7 @@ int kexSoundOAL::MovieAudioThread(void *data)
     }
 
     kex::cTimer->Sleep(100);
+	#endif
     return 0;
 }
 

@@ -101,8 +101,12 @@ void kexPakFile::LoadZipFile(const char *file, const bool bUseBasePath)
     {
         filepath = kex::cvarBasePath.GetValue();
 
-        fPath = filepath;
+        fPath = filepath;	
+		#ifndef __MORPHOS__
         fPath = fPath + "/" + file;
+		#else
+		fPath = fPath + file;
+		#endif
     }
     else
     {

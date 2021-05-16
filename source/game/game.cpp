@@ -571,12 +571,14 @@ void kexGameLocal::Init(void)
 
 void kexGameLocal::Start(void)
 {
+	#ifndef __MORPHOS__
     if(kex::cSystem->CheckParam("-skipintromovies") <= 0 &&
         cvarShowMovieIntro.GetBool())
     {
         kex::cMoviePlayer->StartVideoStream("movies/LOBOTOMY.avi");
         kex::cMoviePlayer->StartVideoStream("movies/INTRO1.avi");
     }
+	#endif
 
     bNoMonsters = (kex::cSystem->CheckParam("-nomonsters") > 0);
 

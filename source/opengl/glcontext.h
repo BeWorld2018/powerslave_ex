@@ -15,7 +15,11 @@
 #ifndef __GLCTX_H__
 #define __GLCTX_H__
 
+#ifdef __MORPHOS__
+#include <SDL_opengl.h>
+#else
 #include <SDL2/SDL_opengl.h>
+#endif
 
 // because for some dumb reason, these aren't defined
 #ifndef GL_ARB_framebuffer_object

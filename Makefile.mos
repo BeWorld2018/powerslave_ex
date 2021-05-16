@@ -1,0 +1,126 @@
+TARGET = powerslave_ex
+INCL =-Isource
+INCL+=-Isource/framework
+INCL+=-Isource/game
+INCL+=-Isource/math
+INCL+=-Isource/movie
+INCL+=-Isource/opengl
+INCL+=-Isource/renderer
+INCL+=-Isource/script
+INCL+=-Isource/script/objects
+INCL+=-Isource/script/al
+INCL+=-Isource/system
+INCL+=-Isource/system/sdl
+INCL+=-Isource/tools
+INCL+=-Isource/tools/mapEditor
+
+INCL+=-Imake/sdk/angelscript/include
+
+SDL_CFLAGS = -noixemul -fpermissive -D__MORPHOS_SHAREDLIBS -I/usr/local/include -I/usr/local/include/SDL2 $(INCL)
+SDL_LIBS = -noixemul -L/usr/local/lib -lSDL2 -lc -lm
+
+CPPFLAGS += -O2 -std=c++11 -Wall $(SDL_CFLAGS) 
+
+CXX=ppc-morphos-g++-10
+
+OBJS = 	source/main.o \
+				source/framework/actions.o \
+				source/framework/binFile.o \
+				source/framework/cmd.o \
+				source/framework/console.o \
+				source/framework/cvar.o \
+				source/framework/defs.o \
+				source/framework/dict.o \
+				source/framework/kpf.o \
+				source/framework/kstring.o \
+				source/framework/memHeap.o \
+				source/framework/object.o \
+				source/framework/parser.o \
+				source/framework/session.o \
+				source/framework/unzip.o \
+				source/game/actionDef.o \
+				source/game/actor.o \
+				source/game/actorFactory.o \
+				source/game/ai.o \
+				source/game/cmodel.o \
+				source/game/dlightObj.o \
+				source/game/game.o \
+				source/game/gameObject.o \
+				source/game/hud.o \
+				source/game/inventoryMenu.o \
+				source/game/localization.o \
+				source/game/menu.o \
+				source/game/menuPanel.o \
+				source/game/mover.o \
+				source/game/overWorld.o \
+				source/game/pickup.o \
+				source/game/player.o \
+				source/game/playerCmd.o \
+				source/game/playLoop.o \
+				source/game/projectile.o \
+				source/game/pWeapon.o \
+				source/game/spring.o \
+				source/game/sprite.o \
+				source/game/spriteAnim.o \
+				source/game/titlescreen.o \
+				source/game/travelObject.o \
+				source/game/world.o \
+				source/math/angle.o \
+				source/math/bounds.o \
+				source/math/mathlib.o \
+				source/math/matrix.o \
+				source/math/plane.o \
+				source/math/pluecker.o \
+				source/math/quaternion.o \
+				source/math/random.o \
+				source/math/vector.o \
+				source/movie/movie.o \
+				source/opengl/glcontext.o \
+				source/renderer/cpuVertexList.o \
+				source/renderer/fbo.o \
+				source/renderer/image.o \
+				source/renderer/renderBackend.o \
+				source/renderer/renderDynLight.o \
+				source/renderer/renderFont.o \
+				source/renderer/renderPortal.o \
+				source/renderer/renderPostProcess.o \
+				source/renderer/renderScene.o \
+				source/renderer/renderScreen.o \
+				source/renderer/renderUtils.o \
+				source/renderer/renderView.o \
+				source/renderer/shaderProg.o \
+				source/renderer/textureManager.o \
+				source/renderer/textureObject.o \
+				source/renderer/vertexBuffer.o \
+				source/script/scriptSystem.o \
+				source/script/objects/actorObject.o \
+				source/script/objects/gameSysObject.o \
+				source/script/objects/mathObject.o \
+				source/script/objects/refObject.o \
+				source/script/objects/stringObject.o \
+				source/script/objects/systemObject.o \
+				source/system/endian.o \
+				source/tools/dataConvert.o \
+				source/tools/spriteMake.o \
+				source/system/input.o \
+				source/system/sound.o \
+				source/system/system.o \
+				source/system/thread.o \
+				source/system/timer.o \
+				source/system/sdl/endianSDL.o \
+				source/system/sdl/inputSDL.o \
+				source/system/sdl/systemSDL.o \
+				source/system/sdl/timerSDL.o \
+				source/system/sdl/threadSDL.o \
+				source/system/al/soundOAL.o \
+				source/tools/mapEditor/mapEditor.o
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CXX) $(LDFLAGS) -o $@ $^  -Lmake/sdk/angelscript/lib -langelscript -lopenal $(SDL_LIBS) -lpng_shared -lz_shared -lpthread 
+	cp $(TARGET) res/
+	ppc-morphos-strip --strip-all res/$(TARGET)
+
+clean:
+	rm -f $(OBJS) 
